@@ -4,28 +4,37 @@
     border-radius: 15px;
     padding: 20px;
     background-color: grey; 
-    height: 540px;
-    width: 300px;
+    width: 35%;
     flex-direction: column;
-
+    border: 3px solid black;
 }
 input{
-    width: 67%;
+    width: 70%;
     padding: 10px;
-    margin: 5px;
+    margin: 0px 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
     background-color: lightblue;
+    font-weight: bold;
+    border: 2px solid black;
+
 }
 .clear{
-    background-color: #f0f0f0;
+    background-color: wheat;
     border: none;
+    width: 15%;
     border-radius: 5px;
     padding: 10px 20px;
-    margin: 5px;
-    font-size: 16px;
+    margin: 4px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
+    border: 2px solid black;
+
+}
+.equal{
+background-color:  #b35258;
 }
 .keys{
     display: grid;
@@ -54,7 +63,9 @@ button {
     border-radius: 5px;
     color: #333;
     font-size: 20px;
+    font-weight: bold;
     cursor: pointer;
+    border: 2px solid black;
 }
 
 .button:hover {
