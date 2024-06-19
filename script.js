@@ -33,6 +33,21 @@ function operate(operator, a, b) {
             return;
     }
 }
+function clear() {
+    displayValue = "";
+    firstNumber = "";
+    secondNumber = "";
+    operator = "";
+    result = "";
+    display.value = "0";
+}
+function divide(a, b) {
+    if (b === 0) {
+        console.error("Cannot divide by zero");
+        return;
+    }
+    return a / b;
+}
 
 const buttons = document.querySelectorAll("button");
 
@@ -74,23 +89,43 @@ buttons.forEach(button => {
     
     }
 });
-
-function clear() {
-    displayValue = "";
-    firstNumber = "";
-    secondNumber = "";
-    operator = "";
-    result = "";
-    display.value = "0";
-}
-function divide(a, b) {
-    if (b === 0) {
-        console.error("Cannot divide by zero");
-        return;
+window.addEventListener('keydown', (event) => {
+    if (event.key >= 0 && event.key <= 9) {
+        displayValue += event.key;
+        display.value = displayValue;
+    } else if (event.key === '.') {
+        if(displayValue.includes('.')) {
+            return;
+        }
+        displayValue += event.key;
+        display.value = displayValue;
+    } 
+    else if (event.key === 'Backspace') {
+        displayValue = displayValue.slice(0, -1);
+        display.value = displayValue;
     }
-    return a / b;
+    else if (event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/') {
+        if (firstNumber && operator) {
+            secondNumber = displayValue;
+            result = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
+            display.value = result;
+            displayValue = result.toString();
+        }
+        firstNumber = displayValue;
+        operator = event.key;
+        displayValue = '';
+    } else if (event.key === 'Enter') {
+        if (!firstNumber  ||!operator) {
+            return;
+        }
+        secondNumber = displayValue;
+        result = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
+        display.value = result;
+        displayValue = result.toString();
+        firstNumber = '';
+        operator = '';
+    } else if (event.key === 'Escape') {
+        clear();
+    }
 }
-
-
-
-
+);
